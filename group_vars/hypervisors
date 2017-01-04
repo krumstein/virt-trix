@@ -1,0 +1,19 @@
+---
+networks:
+     vkr_trix_internal:
+        ip_address: 192.168.146.1
+        netmask: 255.255.255.0
+        dhcp_start: 192.168.146.128
+        dhcp_end: 192.168.146.254
+        bridge_name: virbr146
+     vkr_trix_external:
+        ip_address: 192.168.147.1
+        netmask: 255.255.255.0
+        dhcp_start: 192.168.147.128
+        dhcp_end: 192.168.147.254
+        bridge_name: virbr147
+iso_name: CentOS-7-x86_64-NetInstall-1611.iso
+install_iso_url: http://mirror.serverbeheren.nl/centos/7/isos/x86_64/{{ iso_name }}
+image_path: /var/lib/libvirt/images/
+iso_dest: "{{ image_path }}{{ iso_name }}"
+

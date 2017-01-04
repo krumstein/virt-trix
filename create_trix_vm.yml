@@ -1,0 +1,33 @@
+---
+- hosts: hypervisors
+  tasks:
+#  - name: list VM's  
+#    virt: command=list_vms
+  - name: install requirements
+    yum: 
+       name: python-lxml
+       state: present
+  - name: define networks
+    virt_net: 
+        command=define
+        name={{ item.key }} 
+        state=present 
+        xml="{{ lookup('template', 'templates/bridge.xml.j2') }}"
+    with_dict:  "{{ networks }}"
+
+  - name: start networks
+    virt_net: 
+        autostart=yes
+        command=create
+        name={{ item.key }} 
+        state=active
+    with_dict:  "{{ networks }}"
+  - name: Check install iso
+    stat: path="{{ image_path }}{{ iso_name }}"
+    register: iso_path
+  - name: download iso if it's not downloaded
+    get_url: 
+       url: "{{ install_iso_url }}"
+       dest: "{{ iso_dest }}"
+    when: iso_path.stat.exists == False
+

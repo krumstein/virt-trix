@@ -1,0 +1,3 @@
+[submodule "ansible-role-vminstaller"]
+	path = ansible-role-vminstaller
+	url = https://github.com/toshywoshy/ansible-role-vminstaller.git

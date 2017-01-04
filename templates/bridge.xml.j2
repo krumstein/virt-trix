@@ -1,0 +1,16 @@
+<network>
+  <name>{{item.key}}</name>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='{{item.value.bridge_name}}' stp='on' delay='0'/>
+  <domain name='{{item.key}}'/>
+  <ip address='{{item.value.ip_address}}' netmask='{{item.value.netmask}}'>
+    <dhcp>
+      <range start='{{item.value.dhcp_start}}' end='{{item.value.dhcp_end}}'/>
+    </dhcp>
+  </ip>
+</network>
+

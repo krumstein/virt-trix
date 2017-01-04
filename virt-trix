@@ -1,0 +1,3 @@
+[hypervisors]
+kvm2 ansible_user=root
+#localhost ansible_connection=local machinearch=x86_64 distro=centos7 hyper=kvm2 
